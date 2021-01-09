@@ -6,6 +6,7 @@
 //  Copyright © 2021 App Brewery. All rights reserved.
 //
 import Foundation
+import CoreLocation
 
 protocol WeatherManagerDelegate {
     func didUpdateWeather(_ weatherManager: WeatherManager,_ weather: WeatherModel)
@@ -19,6 +20,11 @@ struct WeatherManager {
     
     func fetchWeather(cityName: String) {
         let urlString = "\(weatherURL)&q=\(cityName)"
+        performRequest(with: urlString)
+    }
+    
+    func fetchWeather(latitude: CLLocationDegrees, longtitude: CLLocationDegrees) {
+        let urlString = "\(weatherURL)&lat=\(latitude)&lon=\(longtitude)"
         performRequest(with: urlString)
     }
     
